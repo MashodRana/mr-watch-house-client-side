@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import useFirebase from "../../Hooks/useFirebase";
 import "./Login.css";
 
 const Login = () => {
+    const [userInfo, setUserInfo] = useState({});
+    const {user, loginWithEmailPassword} = useFirebase();
+    const handleOnBlur = (evnt)=>{
+        const name = evnt.target.name;
+        const value = evnt.target.value;
+        const newUserInfo = {...userInfo};
+        newUserInfo[name] = value;
+        setUserInfo(newUserInfo);
+    }
+    const handleLogin = ()=>{
+        
+    }
   return (
     <>
       <section class="text-gray-600 body-font">
@@ -45,12 +59,17 @@ const Login = () => {
             <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
               Login
             </button>
-            <p class="text-xs text-gray-500 mt-3">
-              Literally you probably haven't heard of them jean shorts.
-            </p>
+            <hr className="pt-0.5 my-2 bg-gray-400" />
             <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
               Google Login
             </button>
+            <p class="text-normal text-gray-500 mt-3">
+              If you are new here, Please{" "}
+              <Link to="/signup" className="text-blue-400">
+                Sign Up
+              </Link>{" "}
+              first.
+            </p>
           </div>
         </div>
       </section>
