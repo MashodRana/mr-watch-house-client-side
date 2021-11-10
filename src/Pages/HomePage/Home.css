@@ -1,0 +1,6 @@
+.intro-section{
+    background: url(../../images/intro-image.jpg);
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+}
