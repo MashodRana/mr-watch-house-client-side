@@ -6,8 +6,8 @@ import {
   signOut,
   onAuthStateChanged
 } from "firebase/auth";
-import { useEffect, useState } from "react";
-// import { useHistory, useLocation } from "react-router-dom";
+import { useEffect, useImperativeHandle, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import initializeFirebase from "../Firebase/firebase.init";
 
 initializeFirebase();
@@ -17,6 +17,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [authError, setAuthError] = useState("");
+  const history = useHistory();
 
   const signUpWithEmailPassword = (name, email, password) => {
     setIsLoading(true);
@@ -32,6 +33,7 @@ const useFirebase = () => {
         updateProfile(auth.currentUser, { displayName: name })
           .then(() => {})
           .catch((error) => {});
+        history.reaplace('/')
       })
       .catch((error) => {
         setAuthError(error.message);

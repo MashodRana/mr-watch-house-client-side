@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import "./Signup.css";
 
 const Signup = () => {
   const [signupData, setSignupData] = useState({});
   const { user, signUpWithEmailPassword, isLoading } = useAuth();
+  // const location = useLocation();
+  const history = useHistory();
 
   const handleOnBlur = evnt => {
     const field = evnt.target.name;
