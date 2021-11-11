@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ProductCard from "../../Components/Cards/ProductCard";
 import "./Home.css";
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const url = "http://localhost:5000/products";
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
   return (
     <>
       <main>
@@ -18,28 +26,15 @@ const Home = () => {
             tenetur, atque nulla.
           </p>
         </section>
-        <section class="featured-products my-3">
-          <div class="grid grid-cols-3 g-4">
-            <div class="border">
-              <div className="text-center">
-                <img
-                  style={{ height: "200px", width: "200px" }}
-                  src="https://image.freepik.com/free-vector/realistic-clock-watch-stainless-steel-black-face-luxury_33869-1352.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h4 className="text-lg">Product title</h4>
-                <p>Product Price: $6</p>
-                <p>
-                  <Link to='/order'><button className="px-5 py-3 m-4 border"
-                  
-                  >Buy</button></Link>
-                </p>
-              </div>
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap -m-4">
+              {products.map((product) => (
+                <ProductCard key={product._id} product={product}></ProductCard>
+              ))}
             </div>
           </div>
-          <div>
+          <div class="container px-5 py-24 mx-auto">
             <Link to="/store" className="text-lg">
               See More
             </Link>
