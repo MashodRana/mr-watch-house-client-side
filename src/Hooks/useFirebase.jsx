@@ -17,9 +17,6 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [authError, setAuthError] = useState("");
-  const history = useHistory();
-  const location = useLocation();
-  const destination = location?.state?.from || "/";
 
   const signUpWithEmailPassword = (name, email, password) => {
     setIsLoading(true);
@@ -35,7 +32,6 @@ const useFirebase = () => {
         updateProfile(auth.currentUser, { displayName: name })
           .then(() => {})
           .catch((error) => {});
-        history.replace("/");
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -55,7 +51,6 @@ const useFirebase = () => {
         // Signed in
         const user = userCredential.user;
         // ...
-        history.replace(destination);
         setAuthError("");
       })
       .catch((error) => {

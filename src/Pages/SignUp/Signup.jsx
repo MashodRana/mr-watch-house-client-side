@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 import "./Signup.css";
 
 const Signup = () => {
+  const [signupData, setSignupData] = useState({});
+  const { user, signUpWithEmailPassword, isLoading } = useAuth();
+
+  const handleOnBlur = evnt => {
+    const field = evnt.target.name;
+    const value = evnt.target.value;
+    const newData = { ...signupData };
+    newData[field] = value;
+    setSignupData(newData);
+  }
+
+  const handleSignupSubmit = evnt => {
+    console.log(signupData);
+    signUpWithEmailPassword(signupData.name, signupData.email, signupData.password);
+    evnt.preventDefault();
+  }
+
+
   return (
     <>
       <div class="flex justify-center items-center h-screen w-full bg-blue-400">
@@ -10,7 +29,7 @@ const Signup = () => {
           <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">
             Register
           </h1>
-          <form action="/" method="post">
+          <form onSubmit={handleSignupSubmit}>
             <div class="flex flex-col mb-4">
               <label
                 class="mb-2 font-bold text-lg text-gray-900"
@@ -21,11 +40,12 @@ const Signup = () => {
               <input
                 class="border py-2 px-3 text-grey-800"
                 type="text"
-                name="first_name"
-                id="first_name"
+                name="name"
+                id="name"
+                onBlur={handleOnBlur}
               />
             </div>
-            
+
             <div class="flex flex-col mb-4">
               <label class="mb-2 font-bold text-lg text-gray-900" for="email">
                 Email
@@ -35,6 +55,7 @@ const Signup = () => {
                 type="email"
                 name="email"
                 id="email"
+                onBlur={handleOnBlur}
               />
             </div>
             <div class="flex flex-col mb-4">
@@ -49,6 +70,7 @@ const Signup = () => {
                 type="password"
                 name="password"
                 id="password"
+                onBlur={handleOnBlur}
               />
             </div>
             <button

@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 import "./Header.css";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
   const toogleButton = (evnt) => {
     let collapse = document.querySelector("#navbar-collapse");
     collapse.classList.toggle("hidden");
@@ -49,18 +51,22 @@ const Header = () => {
               About
             </NavLink>
 
-            <NavLink
-              to="/login"
-              class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/signup"
-              class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1"
-            >
-              Signup
-            </NavLink>
+            {user.email ? <><p>{user.displayName}</p>
+              <button onClick={logOut}>Logout</button>
+            </> : <>
+              <NavLink
+                to="/login"
+                class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/signup"
+                class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1"
+              >
+                Signup
+              </NavLink>
+            </>}
           </div>
         </div>
       </nav>

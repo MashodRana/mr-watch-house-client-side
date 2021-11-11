@@ -8,10 +8,12 @@ import Header from "./Components/Header/Header";
 import Order from "./Pages/Orders/Order";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/SignUp/Signup";
+import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <BrowserRouter>
         <Header />
         <Switch>
@@ -39,6 +41,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
