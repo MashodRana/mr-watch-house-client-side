@@ -20,6 +20,7 @@ const Signup = () => {
   const handleSignupSubmit = evnt => {
     console.log(signupData);
     signUpWithEmailPassword(signupData.name, signupData.email, signupData.password);
+    history.push('/');
     evnt.preventDefault();
   }
 

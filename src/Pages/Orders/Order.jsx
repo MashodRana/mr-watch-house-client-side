@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
 // import './Order.css'
 
 const Order = () => {
+  const { user } = useAuth();
+  const [orderData, setOrderData] = useState({});
+
+  const handleOnBlur = (evnt) => {
+    const field = evnt.target.name;
+    const value = evnt.target.value;
+    const newData = { ...orderData };
+    newData[field] = value;
+    setOrderData(newData);
+  };
+  const handleOrderDataSubmit = (evnt) => {
+    fetch("http://localhost:5000/order", {
+      method: "post",
+      body: orderData,
+    })
+      .then((res) => res.json())
+      .then((data) => alert(data.message));
+    evnt.preventDefault();
+  };
+
   return (
     <>
-      <h1 className="text-2xl">Provide your information to confirm your order.</h1>
+      <h1 className="text-2xl">
+        Provide your information to confirm your order.
+      </h1>
       <div class="mt-10 sm:mt-0">
         <div class="md:grid md:grid-cols-3 md:gap-6">
           <div class="md:col-span-1">
@@ -18,7 +41,7 @@ const Order = () => {
             </div>
           </div>
           <div class="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form onSubmit={handleOrderDataSubmit}>
               <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
                   <div class="grid grid-cols-6 gap-6">
@@ -27,30 +50,17 @@ const Order = () => {
                         for="first_name"
                         class="block text-sm font-medium text-gray-700"
                       >
-                        First name
+                        Name
                       </label>
                       <input
                         type="text"
-                        name="first_name"
-                        id="first_name"
+                        name="name"
+                        id="name"
                         autocomplete="given-name"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-
-                    <div class="col-span-6 sm:col-span-3">
-                      <label
-                        for="last_name"
-                        class="block text-sm font-medium text-gray-700"
-                      >
-                        Last name
-                      </label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        id="last_name"
-                        autocomplete="family-name"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        readOnly
+                        value={user.displayName}
+                        // onBlur={handleOnBlur}
                       />
                     </div>
 
@@ -62,31 +72,30 @@ const Order = () => {
                         Email address
                       </label>
                       <input
-                        type="text"
-                        name="email_address"
-                        id="email_address"
+                        type="email"
+                        name="email"
+                        id="email"
                         autocomplete="email"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        value={user.email}
+                        readOnly
                       />
                     </div>
-
-                    <div class="col-span-6 sm:col-span-3">
+                    <div class="col-span-6 sm:col-span-4">
                       <label
-                        for="country"
+                        for="email_address"
                         class="block text-sm font-medium text-gray-700"
                       >
-                        Country / Region
+                        Phone
                       </label>
-                      <select
-                        id="country"
-                        name="country"
-                        autocomplete="country"
-                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                      >
-                        <option>United States</option>
-                        <option>Canada</option>
-                        <option>Mexico</option>
-                      </select>
+                      <input
+                        type="number"
+                        name="phone"
+                        id="phone"
+                        autocomplete="phone"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onBlur={handleOnBlur}
+                      />
                     </div>
 
                     <div class="col-span-6">
@@ -94,14 +103,15 @@ const Order = () => {
                         for="street_address"
                         class="block text-sm font-medium text-gray-700"
                       >
-                        Street address
+                        Address
                       </label>
                       <input
                         type="text"
-                        name="street_address"
-                        id="street_address"
-                        autocomplete="street-address"
+                        name="address"
+                        id="address"
+                        autocomplete="address"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onBlur={handleOnBlur}
                       />
                     </div>
 
@@ -117,37 +127,7 @@ const Order = () => {
                         name="city"
                         id="city"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-
-                    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <label
-                        for="state"
-                        class="block text-sm font-medium text-gray-700"
-                      >
-                        State / Province
-                      </label>
-                      <input
-                        type="text"
-                        name="state"
-                        id="state"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-
-                    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                      <label
-                        for="postal_code"
-                        class="block text-sm font-medium text-gray-700"
-                      >
-                        ZIP / Postal
-                      </label>
-                      <input
-                        type="text"
-                        name="postal_code"
-                        id="postal_code"
-                        autocomplete="postal-code"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onBlur={handleOnBlur}
                       />
                     </div>
                   </div>
