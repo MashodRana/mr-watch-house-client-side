@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useFirebase from "../../Hooks/useFirebase";
 import "./Login.css";
@@ -7,6 +7,9 @@ import "./Login.css";
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
   const { user, loginWithEmailPassword } = useAuth();
+  const location = useLocation();
+  const history = useHistory();
+  const destination = location?.state?.from?.pathname || '/';
   const handleOnBlur = (evnt) => {
     const name = evnt.target.name;
     const value = evnt.target.value;
@@ -16,7 +19,9 @@ const Login = () => {
   }
   const handleLogin = (evnt) => {
     console.log(userInfo);
-    loginWithEmailPassword(userInfo.email, userInfo.password);
+    loginWithEmailPassword(userInfo.email, userInfo.password)
+    history.replace(destination);
+
     evnt.preventDefault();
   }
   return (

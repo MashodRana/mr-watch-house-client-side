@@ -9,6 +9,7 @@ import Order from "./Pages/Orders/Order";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/SignUp/Signup";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -26,9 +27,9 @@ function App() {
           <Route exact path="/store">
             <Store></Store>
           </Route>
-          <Route exact path="/order">
+          <PrivateRoute exact path="/order">
             <Order></Order>
-          </Route>
+          </PrivateRoute>
           <Route exact path="/login">
             <Login></Login>
           </Route>

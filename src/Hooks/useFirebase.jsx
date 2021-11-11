@@ -7,7 +7,7 @@ import {
   onAuthStateChanged
 } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+// import { useHistory, useLocation } from "react-router-dom";
 import initializeFirebase from "../Firebase/firebase.init";
 
 initializeFirebase();
