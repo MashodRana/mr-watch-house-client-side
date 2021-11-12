@@ -6,7 +6,7 @@ const Order = () => {
   const { user } = useAuth();
   const [orderData, setOrderData] = useState({});
 
-  const handleOnBlur = (evnt) => {
+  const handleOnChange = (evnt) => {
     const field = evnt.target.name;
     const value = evnt.target.value;
     const newData = { ...orderData };
@@ -14,12 +14,23 @@ const Order = () => {
     setOrderData(newData);
   };
   const handleOrderDataSubmit = (evnt) => {
+    orderData.email = user.email;
+    orderData.name = user.displayName;
+    console.log('printing orderdata:: ', orderData)
     fetch("http://localhost:5000/order", {
       method: "post",
-      body: orderData,
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(orderData),
     })
       .then((res) => res.json())
-      .then((data) => alert(data.message));
+      .then((data) => {
+        alert(data.message)
+      });
+    setOrderData({
+      phone: '',
+      address: '',
+      city: ''
+    })
     evnt.preventDefault();
   };
 
@@ -60,7 +71,7 @@ const Order = () => {
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                         readOnly
                         value={user.displayName}
-                        // onBlur={handleOnBlur}
+                      // onChange={handleOnChange}
                       />
                     </div>
 
@@ -89,12 +100,13 @@ const Order = () => {
                         Phone
                       </label>
                       <input
+                        required
                         type="number"
                         name="phone"
                         id="phone"
-                        autocomplete="phone"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        onBlur={handleOnBlur}
+                        onChange={handleOnChange}
+                        value={orderData.phone}
                       />
                     </div>
 
@@ -106,12 +118,14 @@ const Order = () => {
                         Address
                       </label>
                       <input
+                        required
                         type="text"
                         name="address"
                         id="address"
                         autocomplete="address"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        onBlur={handleOnBlur}
+                        onChange={handleOnChange}
+                        value={orderData.address}
                       />
                     </div>
 
@@ -123,11 +137,13 @@ const Order = () => {
                         City
                       </label>
                       <input
+                        required
                         type="text"
                         name="city"
                         id="city"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        onBlur={handleOnBlur}
+                        onChange={handleOnChange}
+                        value={orderData.city}
                       />
                     </div>
                   </div>
