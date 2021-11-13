@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import useFirebase from "../../Hooks/useFirebase";
+// import useFirebase from "../../Hooks/useFirebase";
 import "./Login.css";
 
 const Login = () => {

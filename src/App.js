@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/store">
             <Store></Store>
           </Route>
-          <PrivateRoute exact path="/order">
+          <PrivateRoute exact path="/order/:productId">
             <Order></Order>
           </PrivateRoute>
           <PrivateRoute path="/dashboard">

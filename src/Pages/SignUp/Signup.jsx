@@ -5,7 +5,7 @@ import "./Signup.css";
 
 const Signup = () => {
   const [signupData, setSignupData] = useState({});
-  const { user, signUpWithEmailPassword, isLoading } = useAuth();
+  const { signUpWithEmailPassword } = useAuth();
   // const location = useLocation();
   const history = useHistory();
 

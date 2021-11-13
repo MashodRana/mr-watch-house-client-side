@@ -6,8 +6,8 @@ import {
   signOut,
   onAuthStateChanged
 } from "firebase/auth";
-import { useEffect, useImperativeHandle, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import initializeFirebase from "../Firebase/firebase.init";
 
 initializeFirebase();
@@ -51,7 +51,7 @@ const useFirebase = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // ...
         setAuthError("");
       })
