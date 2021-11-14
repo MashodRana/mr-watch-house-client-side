@@ -9,7 +9,7 @@ const Signup = () => {
   // const location = useLocation();
   const history = useHistory();
 
-  const handleOnBlur = evnt => {
+  const handleOnChange = evnt => {
     const field = evnt.target.name;
     const value = evnt.target.value;
     const newData = { ...signupData };
@@ -27,70 +27,79 @@ const Signup = () => {
 
   return (
     <>
-      <div class="flex justify-center items-center h-screen w-full bg-blue-400">
-        <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
-          <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">
-            Register
-          </h1>
-          <form onSubmit={handleSignupSubmit}>
-            <div class="flex flex-col mb-4">
-              <label
-                class="mb-2 font-bold text-lg text-gray-900"
-                for="first_name"
-              >
-                Name
-              </label>
-              <input
-                class="border py-2 px-3 text-grey-800"
-                type="text"
-                name="name"
-                id="name"
-                onBlur={handleOnBlur}
-              />
-            </div>
+    <main>
+    <section class="text-gray-600 body-font">
+        <form onSubmit={handleSignupSubmit}>
 
-            <div class="flex flex-col mb-4">
-              <label class="mb-2 font-bold text-lg text-gray-900" for="email">
-                Email
-              </label>
-              <input
-                class="border py-2 px-3 text-grey-800"
-                type="email"
-                name="email"
-                id="email"
-                onBlur={handleOnBlur}
-              />
-            </div>
-            <div class="flex flex-col mb-4">
-              <label
-                class="mb-2 font-bold text-lg text-gray-900"
-                for="password"
+          <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+            <div class="lg:w-2/6 md:w-1/2 bg-purple-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 mx-auto">
+              <h2 class="text-yellow-800 text-lg font-medium title-font mb-5">
+               Create a New Account
+              </h2>
+              <div class="relative mb-4">
+                <label for="name" class="leading-7 text-sm text-gray-600">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  onChange={handleOnChange}
+                  value={signupData.name}
+                  required
+                />
+              </div>
+              <div class="relative mb-4">
+                <label for="email" class="leading-7 text-sm text-gray-600">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  onChange={handleOnChange}
+                  value={signupData.email}
+                  required
+                />
+              </div>
+              <div class="relative mb-4">
+                <label for="full-name" class="leading-7 text-sm text-gray-600">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="full-name"
+                  name="password"
+                  class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  onChange={handleOnChange}
+                  value={signupData.password}
+                  required
+                />
+              </div>
+              <button
+                class="text-gray-200 bgc1 opacity-50 border-0 py-2 px-8 focus:outline-none hover:opacity-100 rounded text-lg"
+                type="submit"
               >
-                Password
-              </label>
-              <input
-                class="border py-2 px-3 text-grey-800"
-                type="password"
-                name="password"
-                id="password"
-                onBlur={handleOnBlur}
-              />
+                Create Account
+              </button>
+              <hr className="pt-0.5 my-2 bg-gray-400" />
+              <button class="text-gray-200 bgc1 opacity-50 border-0 py-2 px-8 focus:outline-none hover:opacity-100 rounded text-lg">
+                Google Login
+              </button>
+              <p class="text-normal text-gray-500 mt-3">
+                Already have an account?, Please{" "}
+                <Link to="/login" className="text-yellow-800">
+                  Login
+                </Link>{" "}
+                here.
+              </p>
             </div>
-            <button
-              class="block bg-blue-400 hover:bg-teal-600 text-white uppercase text-lg mx-auto p-4 rounded"
-              type="submit"
-            >
-              Create Account
-            </button>
-          </form>
-          <Link
-            class="block w-full text-center no-underline mt-4 text-sm text-gray-700 hover:text-gray-900"
-            to="/login"
-          >
-            Already have an account?
-          </Link>
-        </div>
-      </div>
+          </div>
+        </form>
+      </section>
+    </main>
     </>
   );
 };
