@@ -30,18 +30,8 @@ const Login = () => {
         <form onSubmit={handleLogin}>
 
           <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
-            <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-              <h1 class="title-font font-medium text-3xl text-gray-900">
-                Slow-carb next level shoindcgoitch ethical authentic, poko
-                scenester
-              </h1>
-              <p class="leading-relaxed mt-4">
-                Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-                hammock starladder roathse. Craies vegan tousled etsy austin.
-              </p>
-            </div>
-            <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-              <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
+            <div class="lg:w-2/6 md:w-1/2 bg-purple-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 mx-auto">
+              <h2 class="text-yellow-800 text-lg font-medium title-font mb-5">
                 Login
               </h2>
               <div class="relative mb-4">
@@ -73,18 +63,18 @@ const Login = () => {
                 />
               </div>
               <button
-                class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                class="text-gray-200 bgc1 opacity-50 border-0 py-2 px-8 focus:outline-none hover:opacity-100 rounded text-lg"
                 type="submit"
               >
                 Login
               </button>
               <hr className="pt-0.5 my-2 bg-gray-400" />
-              <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+              <button class="text-gray-200 bgc1 opacity-50 border-0 py-2 px-8 focus:outline-none hover:opacity-100 rounded text-lg">
                 Google Login
               </button>
               <p class="text-normal text-gray-500 mt-3">
                 If you are new here, Please{" "}
-                <Link to="/signup" className="text-blue-400">
+                <Link to="/signup" className="text-yellow-800">
                   Sign Up
                 </Link>{" "}
                 first.
