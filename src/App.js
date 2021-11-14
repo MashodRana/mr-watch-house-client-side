@@ -12,6 +12,7 @@ import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Footer from "./Components/Footer/Footer";
+import Aboutus from "./Pages/About/Aboutus";
 
 function App() {
   return (
@@ -41,7 +42,9 @@ function App() {
           <Route exact path="/signup">
             <Signup></Signup>
           </Route>
-          
+          <Route exact path="/about">
+            <Aboutus></Aboutus>
+          </Route>
           <Route path="*">
             <NotFound></NotFound>
           </Route>
