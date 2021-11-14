@@ -10,15 +10,15 @@ const Login = () => {
   const location = useLocation();
   const history = useHistory();
   const destination = location?.state?.from?.pathname || '/';
-  const handleOnBlur = (evnt) => {
-    const name = evnt.target.name;
+  const handleOnChange = (evnt) => {
+    const field = evnt.target.name;
     const value = evnt.target.value;
-    const newUserInfo = { ...userInfo };
-    newUserInfo[name] = value;
+    let newUserInfo = { ...userInfo };
+    newUserInfo[field] = value;
     setUserInfo(newUserInfo);
   }
   const handleLogin = (evnt) => {
-    console.log(userInfo);
+    // console.log('inside handleLogin ', userInfo);
     loginWithEmailPassword(userInfo.email, userInfo.password)
     history.replace(destination);
 
@@ -53,7 +53,8 @@ const Login = () => {
                   id="email"
                   name="email"
                   class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  onBlur={handleOnBlur}
+                  onChange={handleOnChange}
+                  value={userInfo.email}
                   required
                 />
               </div>
@@ -66,7 +67,8 @@ const Login = () => {
                   id="full-name"
                   name="password"
                   class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  onBlur={handleOnBlur}
+                  onChange={handleOnChange}
+                  value={userInfo.password}
                   required
                 />
               </div>

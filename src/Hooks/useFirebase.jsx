@@ -17,6 +17,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [authError, setAuthError] = useState("");
+  const [isAdmin, setIsAdmin] = useState(null);
   const history = useHistory();
 
   const signUpWithEmailPassword = (name, email, password) => {
@@ -27,13 +28,18 @@ const useFirebase = () => {
         setAuthError("");
         //   set the new user
         const newUser = { email, displayName: name };
+
         //   update user state with new user.
         setUser(newUser);
+
+        // save user to the database
+        saveUser(email, name, 'POST');
+
         //   Update firebase user information.
         updateProfile(auth.currentUser, { displayName: name })
-          .then(() => {})
-          .catch((error) => {});
-        history.push('/')
+          .then(() => { })
+          .catch((error) => { });
+        // history.push('/')
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -46,7 +52,7 @@ const useFirebase = () => {
 
   const loginWithEmailPassword = (email, password) => {
     //   To login in the system with email and password.
-    
+
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -75,20 +81,39 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
-  useEffect(()=>{
-      onAuthStateChanged(auth, user=>{
-          if(user){
-              setUser(user);
-          }
-          else{
-              setUser({});
-          }
-          setIsLoading(false);
-      })
-  },[])
+  const saveUser = (email, displayName, method) => {
+    const user = { email, displayName };
+    fetch('http://localhost:5000/users', {
+      method: method,
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+      .then()
+  }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        setUser(user);
+      }
+      else {
+        setUser({});
+      }
+      setIsLoading(false);
+    })
+  }, [])
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user.email}`)
+      .then(res => res.json())
+      .then(data => setIsAdmin(data.admin));
+  }, [user.email])
 
   return {
     user,
+    isAdmin,
     isLoading,
     authError,
     signUpWithEmailPassword,
