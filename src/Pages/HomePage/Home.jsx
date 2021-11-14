@@ -36,7 +36,8 @@ const Home = () => {
                 <h2 className="text-3xl text-yellow-800">
                   GET THE BEST VERSION <br /> OF YOUR LOOK STYLE
                 </h2>
-                <button className="bgc1 px-4 py-2 mt-10 rounded text-gray-200">Contact Us</button>
+                <br />
+                <Link to='/store' className="text-center opacity-75 hover:opacity-100 bgc1 px-4 py-2 mt-10 rounded text-gray-200">Shop Now</Link>
               </div>
             </div>
             <div >
