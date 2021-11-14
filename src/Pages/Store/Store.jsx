@@ -13,9 +13,9 @@ const Store = () => {
     return (
         <main>
             <div className="container mx-auto">
-                <h2 className="text-4xl text-center">Explore our all Products</h2>
-                <section class="text-gray-600 body-font">
-                    <div class="container px-5 py-24 mx-auto">
+                <section class="py-24 text-gray-600 body-font">
+                    <h2 className="mb-12 text-4xl text-center text-yellow-800">Explore our all Products</h2>
+                    <div class="container px-5 mx-auto">
                         <div class="flex flex-wrap -m-4">
                             {products.map((product) => (
                                 <ProductCard key={product._id} product={product}></ProductCard>
