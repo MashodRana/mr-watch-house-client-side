@@ -11,6 +11,7 @@ import Signup from "./Pages/SignUp/Signup";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <NotFound></NotFound>
           </Route>
         </Switch>
+        <Footer></Footer>
       </BrowserRouter>
       </AuthProvider>
     </div>
