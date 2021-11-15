@@ -32,6 +32,7 @@ const ManageProducts = () => {
     return (
         <>
             <div className="container mx-auto">
+                <h2 class="text-xl text-gray-500 mb-6">Manage All Products</h2>
                 <div className="grid gird-cols-1">
                     {
                         products.map(product => <ShowProduct

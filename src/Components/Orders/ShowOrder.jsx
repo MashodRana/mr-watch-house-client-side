@@ -36,10 +36,10 @@ const ShowOrder = (props) => {
             </button>
           </div>
           {isAdmin && status === "pending" && (
-            <div>
+            <div className='text-center'>
               <button
                 onClick={() => props.shipOrder(_id, props.idx)}
-                className="text-red-700"
+                className=" px-4 py-0.5 rounded-full border border-yellow-500 text-yellow-500 hover:bg-yellow-800 hover:text-gray-200"
               >
                 Shipp it
               </button>
