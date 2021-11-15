@@ -9,7 +9,7 @@ const ManageOrders = () => {
         console.log('inside Ship Order ', orderId)
         setMessage('');
         try {
-            const url = `http://localhost:5000/orders/${orderId}`;
+            const url = `https://hidden-shelf-04105.herokuapp.com/orders/${orderId}`;
             fetch(url, {
                 method: 'put',
             }).then(res => res.json())
@@ -30,7 +30,7 @@ const ManageOrders = () => {
         console.log('inside Cancel Order ', orderId)
         setMessage('');
         try {
-            const url = `http://localhost:5000/order/`;
+            const url = `https://hidden-shelf-04105.herokuapp.com/order/`;
             fetch(url, {
                 method: 'delete',
                 headers: { "content-type": "application/json" },
@@ -50,7 +50,7 @@ const ManageOrders = () => {
     }
 
     useEffect(() => {
-        const url = `http://localhost:5000/orders`;
+        const url = `https://hidden-shelf-04105.herokuapp.com/orders`;
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data));

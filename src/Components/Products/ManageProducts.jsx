@@ -10,7 +10,7 @@ const ManageProducts = () => {
         if (!isRemove) {
             return;
         }
-        const url = `http://localhost:5000/products/${productId}`;
+        const url = `https://hidden-shelf-04105.herokuapp.com/products/${productId}`;
         fetch(url, {
             method: 'DELETE'
         })
@@ -24,7 +24,7 @@ const ManageProducts = () => {
     }
 
     useEffect(() => {
-        const url = `http://localhost:5000/products`;
+        const url = `https://hidden-shelf-04105.herokuapp.com/products`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProducts(data));

@@ -4,7 +4,20 @@ import useAuth from '../../Hooks/useAuth';
 
 const AdminRoute = ({ children, ...rest }) => {
     const { user, isAdmin, isLoading } = useAuth();
-    if (isLoading || isAdmin===null) {
+    if (isLoading) {
+        return <div class="flex justify-center items-center">
+            <div
+                class="
+            animate-spin
+            rounded-full
+            h-32
+            w-32
+            border-t-2 border-b-2 border-purple-500
+          "
+            ></div>
+        </div>
+    }
+    if (isAdmin===null) {
         return <div class="flex justify-center items-center">
             <div
                 class="

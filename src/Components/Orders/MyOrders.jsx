@@ -11,7 +11,7 @@ const MyOrders = () => {
   const cancelOrder = (orderId) => {
     console.log("inside Cancel Order ", orderId);
     try {
-      const url = `http://localhost:5000/order/`;
+      const url = `https://hidden-shelf-04105.herokuapp.com/order/`;
       fetch(url, {
         method: "delete",
         headers: { "content-type": "application/json" },
@@ -30,7 +30,7 @@ const MyOrders = () => {
   };
 
   useEffect(() => {
-    const url = `http://localhost:5000/orders/?email=${user.email}`;
+    const url = `https://hidden-shelf-04105.herokuapp.com/orders/?email=${user.email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setMyOrders(data));

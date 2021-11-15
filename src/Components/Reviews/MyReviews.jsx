@@ -23,7 +23,7 @@ const MyReviews = () => {
     reviewData.name = user.displayName;
     reviewData.email = user.email;
     console.log("inside the submitReview of add review ", reviewData);
-    const url = `http://localhost:5000/review`;
+    const url = `https://hidden-shelf-04105.herokuapp.com/review`;
     fetch(url, {
       method: "post",
       headers: { "content-type": "application/json" },

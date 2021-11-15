@@ -19,8 +19,8 @@ const Dashboard = () => {
             <main>
                 {console.log('is admin', isAdmin)}
                 <div className="container mx-auto p-6">
-                    <div className="grid grid-cols-12 gap-12">
-                        <div className="dashboard-navigation ">
+                    <div className="grid grid-cols-12">
+                        <div className="dashboard-navigation col-span-2">
                             {isAdmin || <>
                                 <p><Link to={`${url}/my-orders`} >My Orders</Link></p>
                                 <br />
@@ -43,11 +43,12 @@ const Dashboard = () => {
                             }
 
                         </div>
-                        <div className="col-span-10 dashboard-container mt-6">
+                        <div className="col-span-9 dashboard-container mt-6 ml-6">
 
                             <Switch>
                                 <Route exact path={path}>
-                                    <h3>Please select a topic.</h3>
+                                    <h3 className='text-4xl text-yellow-800'>Welcome to the Dashboard</h3>
+                                    <p>Naviagte using left side menu.</p>
                                 </Route>
                                 <Route exact path={`${path}/my-orders`}>
                                     <MyOrders></MyOrders>

@@ -24,7 +24,7 @@ const Order = () => {
     data.price = product.price;
     data.productId = product._id
     console.log('printing orderdata:: ', data)
-    fetch("http://localhost:5000/order", {
+    fetch("https://hidden-shelf-04105.herokuapp.com/order", {
       method: "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -41,7 +41,7 @@ const Order = () => {
     evnt.preventDefault();
   };
   useEffect(() => {
-    const url = `http://localhost:5000/products/${productId}`;
+    const url = `https://hidden-shelf-04105.herokuapp.com/products/${productId}`;
     fetch(url)
       .then(res => res.json())
       .then(data => setProduct(data));

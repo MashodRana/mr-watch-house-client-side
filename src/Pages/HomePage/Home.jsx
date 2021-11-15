@@ -9,7 +9,7 @@ const Home = () => {
   const [newProducts, setNewProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    const url = "http://localhost:5000/products";
+    const url = "https://hidden-shelf-04105.herokuapp.com/products";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -19,7 +19,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const url = "http://localhost:5000/reviews";
+    const url = "https://hidden-shelf-04105.herokuapp.com/reviews";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setReviews(data));
